@@ -1,0 +1,30 @@
+.container {
+    /* background-color: #A0CFEB; */
+    height: 100vh;
+    width: 100%;
+}
+
+
+#root {
+    background-color: #A0CFEB;
+    height: 100vh;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f7f7f7;
+}
+
+table td {
+  background-color: #fafafa;
+}

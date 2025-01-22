@@ -1,0 +1,405 @@
+openapi: '3.0.1'
+info:
+  title: Estokou
+  description:
+    Possui os cadastros de usuários, estoques e a criação de produto dos estoque do usuário
+  version: '0.1'
+servers:
+  - url: http://{host}:{porta}/api
+    variables:
+      host:
+        default: localhost
+      porta:
+        default: '8000'
+paths:
+  /usuarios:
+    get:
+      summary: Acessar usuários
+      responses:
+        200:
+          description: OK
+    
+    post:
+      summary: Criar um usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: O nome da pessoa.
+                  example: Chico
+                email:
+                  type: string
+                  description: email:.
+                  example: Chico@chico
+                senha:
+                  type: string
+                  description: senha:.
+                  example: Chico123  
+        
+      responses:
+        201:
+          description: Usuário criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        400:
+          description: Requisição inválida
+
+  /usuarios/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Acessar um usuário
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Criar ou atualizar um usuário.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+      responses:
+        200:
+          description: Atualizado.
+        201:
+          description: Criado.
+        404:
+          description: Usuário não encontrado.
+
+    delete:
+      summary: Apagar um usuário.
+      responses:
+        200:
+          description: OK
+        404:
+          description: Usuário não encontrado.
+  /estoques:
+    get:
+      summary: Acessar todos os estoques
+      responses:
+        200:
+          description: OK
+    
+    post:
+      summary: Criar um estoque
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: O nome do estoque.
+                  example: Estoque principal
+                id_usuario:
+                  type: integer
+                  description: email:.
+                  example: 1 
+        
+      responses:
+        201:
+          description: Estoque criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        400:
+          description: Requisição inválida
+  /estoques/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Acessar um estoque
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Criar ou atualizar um estoque.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                id_usuario:
+                  type: integer
+      responses:
+        200:
+          description: Atualizado.
+        201:
+          description: Criado.
+        404:
+          description: Usuário não encontrado.
+
+    delete:
+      summary: Apagar um estoque.
+      responses:
+        200:
+          description: OK
+        404:
+          description: Estoque não encontrado.
+
+  /movimentacaos:
+    get:
+      summary: Acessar todas as movimentações
+      responses:
+        200:
+          description: OK
+
+    post:
+      summary: Criar uma movimentacao
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_estoque:
+                  type: integer
+                  description: id do estoque associado.
+                  example: 1
+                id_prod:
+                  type: integer
+                  description: id do produto associado.
+                  example: 1
+                valorTotal:
+                  type: integer
+                  description: valor total dessa movimentação.
+                  example: 120
+                data:
+                  type: string
+                  description: data da movimentacao.
+                  example: 18/11/24
+                quantidadeMovi:
+                  type: integer
+                  description: quantidade de produtos envolvidos na movimentacao.
+                  example: 100
+                operacao:
+                  type: boolean
+                  description: operacao utilizada True é somar e False é subtrair (se deixar null considerasse false)
+                  example: true
+      responses:
+        201:
+          description: movimentação criada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        400:
+          description: Requisição inválida   
+
+  /movimentacaos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Acessar uma movimentacao
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Criar ou atualizar uma movimentacao.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_estoque:
+                  type: integer
+                  description: id do estoque.
+                  example: 1
+                id_prod:
+                  type: integer
+                  description: id do produto.
+                  example: 1
+                quantidadeMovi:
+                  type: integer
+                  description: quantidade:.
+                  example: 10
+                data:
+                  type: string
+                  description: data:.
+                  example: 18/11/24 
+                operacao:
+                  type: boolean
+                  description: operacao utilizada True é somar e False é subtrair (se deixar null considerasse false)
+                  example: true
+      responses:
+        200:
+          description: Atualizado.
+        201:
+          description: Criado.
+        404:
+          description: movimentacao não encontrado.
+
+    delete:
+      summary: Apagar uma movimentacao.
+      responses:
+        200:
+          description: OK
+        404:
+          description: movimentacao não encontrado.   
+
+  /produtos:
+    get:
+      summary: Acessar todos os produtos
+      responses:
+        200:
+          description: OK
+    
+    post:
+      summary: Criar um produto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: O nome do produto.
+                  example: pipoca
+                fornecedor:
+                  type: string
+                  description: O fornecedor do produto.
+                  example: slup
+                valorCompra:
+                  type: integer
+                  description: valor de Compra do produto:.
+                  example: 100
+                valorVenda:
+                  type: integer
+                  description: valor de Venda do produto:.
+                  example: 100
+                quantidade:
+                  type: integer
+                  description: quantidade:.
+                  example: 10
+                fragilidade:
+                  type: boolean
+                  description: fragilidade:.
+                  example: true 
+      responses:
+        201:
+          description: produto criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: O URI do novo recurso criado.
+        400:
+          description: Requisição inválida
+
+
+  /produtos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Acessar um produto
+      responses:
+        200:
+          description: OK
+    put:
+      summary: Criar ou atualizar um produto.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: O nome do produto.
+                  example: Pipoca
+                fornecedor:
+                  type: string
+                  description: O fornecedor do produto.
+                  example: slup
+                valorCompra:
+                  type: integer
+                  description: valor de Compra do produto:.
+                  example: 100
+                valorVenda:
+                  type: integer
+                  description: valor de Venda do produto:.
+                  example: 100
+                quantidade:
+                  type: integer
+                  description: quantidade:.
+                  example: 10
+                fragilidade:
+                  type: boolean
+                  description: fragilidade:.
+                  example: true 
+      responses:
+        200:
+          description: Atualizado.
+        201:
+          description: Criado.
+        404:
+          description: produto não encontrado.
+
+    delete:
+      summary: Apagar um produto.
+      responses:
+        200:
+          description: OK
+        404:
+          description: produto não encontrado.
+  

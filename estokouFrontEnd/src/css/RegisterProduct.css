@@ -1,0 +1,12 @@
+
+.RegisterProductBody{
+    background-color: #A0CFEB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form{
+    margin-bottom: 20px;
+}
