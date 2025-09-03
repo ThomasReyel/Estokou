@@ -1,7 +1,9 @@
 # 📦 Estokou - Sistema de Controle de Estoque
 
 Status do Projeto: ✅ Finalizado (com bugs conhecidos)
+
 Instituição: Instituto Federal do Rio Grande do Norte (IFRN)
+
 Curso: Informática para Internet
 
 ## 📋 Descrição do Projeto
@@ -36,10 +38,15 @@ Banco de Dados:
 ## ⚙️ Funcionalidades Implementadas
 
 ✅ Cadastro de Produtos - Inclusão, edição e exclusão de itens do estoque
+
 ✅ Controle de Entradas/Saídas - Registro completo do movimento de mercadorias
+
 ✅ Gestão de Categorias - Organização de produtos por categorias
+
 ✅ Relatórios Financeiros - Emissão de relatórios mensais de faturamento
+
 ✅ Interface Responsiva - Dashboard adaptável para diferentes dispositivos
+
 ✅ Busca e Filtros - Sistema de pesquisa para localização rápida de produtos
 
 ## 🚀 Instalação e Configuração
